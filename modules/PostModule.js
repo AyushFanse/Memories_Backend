@@ -69,8 +69,8 @@ const PutPost =  async (req, res) => {
       }
       const data = {
         name: req.body.name || post.name,
-        avatar: result?.secure_url || post.avatar,
-        cloudinary_id: result?.public_id || post.cloudinary_id,
+        avatar: result.secure_url || post.avatar,
+        cloudinary_id: result.public_id || post.cloudinary_id,
         description: req.body.description || post.description,
       };
       post = await Posts.findByIdAndUpdate(req.params.id, data, { new: true });
