@@ -30,14 +30,17 @@ exports.getUserById = async(req, res, next)=>{
   exports.updateUser =async (req, res, next)=>{
 
     try{
-      let response = await User.findByIdAndUpdate(req.params.userId,{
-        first_name:req.body.first_name,
-        last_name:req.body.last_name,
-        username:req.body.username,
-        email:req.body.email,
-        number:req.body.number
-      },{new : true})
-      res.status(200).send({msg : "You have successfully updated your account..!", status : "success"}).send(response);
+      const user = await User.findById(req.params.userId);      
+      const data = {
+        first_name: req.body.first_name || user.first_name,
+        last_name: req.body.last_name || user.last_name,
+        username: req.body.username || user.username,
+        number: req.body.number || user.number,
+        post: req.body.post || user.post,
+        email: req.body.email || user.email
+      };
+      const response = await User.findByIdAndUpdate(req.params.userId, data, { new: true });
+      res.status(200).json({msg: 'Your Account has been updated succeccfully...', status:'success' });
     }catch(err){
       res.status(400).send(err);
     }

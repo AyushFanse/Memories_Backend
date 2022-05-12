@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const mongo = require("./connection");
 var indexRoutes = require('./routes/index');
-// var usersRoutes = require('./routes/users');
+var usersRoutes = require('./routes/users');
 var postRoutes = require('./routes/post');
 var registerRoutes = require('./routes/register');
 const logger = require('morgan');
@@ -32,7 +32,7 @@ app.use(cors());
 //----------------------------* Routers *----------------------------//
 
 app.use('/', indexRoutes );
-app.use('/users', require('./routes/users') );
+app.use('/users', usersRoutes );
 app.use('/register', registerRoutes );
 app.use('/upload', postRoutes );
 
