@@ -57,7 +57,7 @@ const DeletePost = (async (req, res) => {
 
 //----------------------------* Update Post By Id From DataBase *----------------------------//
 
-const PutPost =  async (req, res) => {
+const PatchPost =  async (req, res) => {
   try {
       let post = await Posts.findById(req.params.id);
       // Delete image from cloudinary
@@ -98,6 +98,6 @@ module.exports = {
                     CreatePost,
                     GetPost,
                     DeletePost,
-                    PutPost,
+                    PatchPost,
                     GetPostById
                   }
