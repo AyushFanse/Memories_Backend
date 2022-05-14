@@ -4,7 +4,7 @@ const upload = require('../middleWare/multer');
 
 //----------------------------* Routes for Posts *----------------------------//
 
-router.post('/post', upload.single('image'), CreatePost);
+router.post('/post', upload.single('file'), CreatePost);
 
 router.get('/get', GetPost);
 
@@ -12,7 +12,7 @@ router.get('/get/:id', GetPostById);
 
 router.delete('/delete/:id', DeletePost);
 
-router.patch('/patch/:id', upload.single('image'), PatchPost);
+router.patch('/update/:id', upload.single('file'), PatchPost);
 
 //----------------------------* Exporting Modules *----------------------------//
 
